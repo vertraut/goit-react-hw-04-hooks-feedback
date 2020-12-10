@@ -1,0 +1,11 @@
+.buttons {
+  margin-top: 20px;
+}
+
+.buttons button {
+  padding: 5px 20px;
+}
+
+.buttons button:not(:last-child) {
+  margin-right: 20px;
+}
