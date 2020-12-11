@@ -1,5 +1,6 @@
-const Statistics = props => {
-  const { options, total, positivePercentage } = props;
+import PropTypes from 'prop-types';
+
+const Statistics = ({ options, total, positivePercentage }) => {
   return (
     <div>
       {Object.keys(options).map(feedbackRate => (
@@ -12,6 +13,14 @@ const Statistics = props => {
       <p>Positive feedback: {positivePercentage}%</p>
     </div>
   );
+};
+
+Statistics.propTypes = {
+  options: PropTypes.shape({
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default Statistics;

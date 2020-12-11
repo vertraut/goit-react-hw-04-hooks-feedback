@@ -2,8 +2,23 @@
   margin-top: 20px;
 }
 
+.good {
+  background-color: green;
+  color: #ffffff;
+}
+
+.bad {
+  background-color: rgb(148, 16, 16);
+  color: #ffffff;
+}
+
+.neutral {
+  color: #000000;
+}
+
 .buttons button {
-  padding: 5px 20px;
+  padding: 7px 20px;
+  border: 1px solid #727272;
 }
 
 .buttons button:not(:last-child) {
