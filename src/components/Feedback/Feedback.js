@@ -1,26 +1,43 @@
 import React, { Component } from 'react';
 
+import grades from './grades.json';
+
 import Section from './Section';
 import Statistics from './Statistics';
 import Buttons from './Buttons';
 import Notification from './Notification';
 
 class Feedback extends Component {
-  state = { good: 0, neutral: 0, bad: 0 };
+  state = {
+    raiting: grades.reduce(
+      (options, grade) => ({
+        ...options,
+        [grade.text]: parseInt(grade.raiting),
+      }),
+      {},
+    ),
+  };
 
   addRatingEvent = e => {
-    this.setState(prevState => ({
-      [e.target.innerText]: prevState[e.target.innerText] + 1,
+    this.setState(({ raiting }) => ({
+      raiting: {
+        ...raiting,
+        [e.target.innerText]: raiting[e.target.innerText] + 1,
+      },
     }));
   };
 
   countTotalFeedback = () => {
-    return Object.values(this.state).reduce((acc, value) => acc + value);
+    return Object.values(this.state.raiting).reduce(
+      (acc, value) => acc + value,
+    );
   };
 
   countPositiveFeedbackPercentage = () => {
     let result = null;
-    result = Math.round(this.state.good / (this.countTotalFeedback() / 100));
+    result = Math.round(
+      this.state.raiting.good / (this.countTotalFeedback() / 100),
+    );
     return result ? result : 0;
   };
 
@@ -30,13 +47,13 @@ class Feedback extends Component {
         <Section title={'Please leave feedback'}>
           <Buttons
             event={this.addRatingEvent}
-            options={Object.keys(this.state)}
+            options={Object.keys(this.state.raiting)}
           />
         </Section>
         <Section title={'Statistics'}>
           {this.countTotalFeedback() ? (
             <Statistics
-              options={this.state}
+              options={this.state.raiting}
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />

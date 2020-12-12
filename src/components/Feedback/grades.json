@@ -1,5 +1,5 @@
 [
-  { "id": "1", "text": "good" },
-  { "id": "2", "text": "neutral" },
-  { "id": "3", "text": "bad" }
+  { "id": "1", "text": "good", "raiting": "0" },
+  { "id": "2", "text": "neutral", "raiting": "0" },
+  { "id": "3", "text": "bad", "raiting": "0" }
 ]
